@@ -15,6 +15,42 @@
 
 	<header class="container">
 		{{--navigation n stuff--}}
+	    @auth
+		<nav class="navigation">
+			<div class="btn-group btn-group-sm pull-left">
+				<a href="{{ url('/') }}" class="btn btn-primary"> home </a>
+			</div>
+			<div class="btn-group btn-group-sm pull-right">
+				<small>
+					{{ Auth::user()->email }}
+				</small>
+  
+	            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline-block;">
+	                {{ csrf_field() }}
+	                <button type="submit" class="btn btn-primary btn-sm">logout</button>
+	            </form>
+			</div>
+		</nav>
+	    @endauth
+
+		{{--show status message --}}
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
+
+		{{-- show error message --}}
+        @if(count($errors)>0)
+        	<ul class="alert alert-dismissible alert-danger">
+        		<button type="button" class="close" data-dismiss="alert">&times;</button>
+        		@foreach($errors->all() as $error)
+        			<li>{{ $error }}</li>
+        		@endforeach
+        	</ul>
+        @endif
+		
 	</header>
 
 	<main>

@@ -10,6 +10,19 @@
 			Register
 		</h2>
 
+		
+		{{-- Text field Name --}}
+		
+		  <input type="text" 
+		    class="form-control" 
+		    id="name" 
+		    name="name" 
+		    placeholder="Name"
+		    value="{{ old('name') }}"
+		    required="1"
+		    autofocus="1">
+		
+		
 		{{-- Text field Email --}}
 			
 		  <input type="email" 
@@ -18,8 +31,7 @@
 		    name="email" 
 		    placeholder="Email Address"
 		    value="{{ old('email') }}"
-		    required
-		    autofocus>
+		    required>
 		
 		{{-- Text field Password --}}
 		
@@ -32,10 +44,10 @@
 
 		{{-- Text field Password Confirmation --}}
 		
-		  <input type="password_confirmation" 
+		  <input type="password" 
 		    class="form-control" 
-		    id="password" 
-		    name="password" 
+		    id="password_confirmation" 
+		    name="password_confirmation" 
 		    placeholder="Password, AGAIN"
 		    required>
 		

@@ -34,9 +34,9 @@
 		
 		<label class="checkbox">
 		  <input  type="checkbox" 
-		  	id="rememberMe" 
-		  	name="rememberMe"
-		    value="remember-me" 
+		  	id="remember" 
+		  	name="remember"
+		    value="remember" 
 		    checked>
 		  Remember me
 		</label>
