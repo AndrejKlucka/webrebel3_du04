@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
+use App\Http\Requests\SavePostRequest;
 
 class PostController extends Controller
 {
@@ -46,28 +47,21 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requests\SavePostRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SavePostRequest $request)
     {
-        $this->validate(request(),[ 
-            'title' => 'required|unique:posts,title|max:200|not_in:create,edit,import', 
-            'text' => 'required|string|min:60', 
-            'tags' => 'array'
-        ]);
 
         $post = auth()->user()->posts()->create(
             request(['title','text'])
         );
 
-        //dd($post);
-
         $post->tags()->sync($request->get('tags') ?: []);
 
         message('Ďakujem veľmo pekne za pridanie noveho, kreativneho, nšpirativneho obsahu. Yeah !!!', 'success');
 
-        return redirect('/blog');
+        return view('post.show')->with('post', $blog);
     }
 
     /**
@@ -99,7 +93,7 @@ class PostController extends Controller
 
         //dd( $blog );
         $tags = Tag::all();
-        $blog->tags();
+        $blog->tags;
 
         return view('post.edit')
                 ->with('post', $blog)
@@ -109,27 +103,20 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requests\SavePostRequest  $request
      * @param  \App\Post  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $blog)
+    public function update(SavePostRequest $request, Post $blog)
     {
-
-        $this->validate(request(),[ 
-            'title' => 'required|max:200|not_in:create,edit,import', 
-            'text' => 'required|string|min:60', 
-        ]);
 
         $blog->update(
             request(['title','text'])
         );
 
-        //dd($blog);
-
         $blog->tags()->sync($request->get('tags') ?: []);
 
-        message('Yeah !!! Asi sa to upravi lo teda dufam ... ;)', 'success');
+        message('Yeah !!! Asi sa to upravilo teda dúfam ... ;)', 'success');
 
         return view('post.show')->with('post', $blog);
     }

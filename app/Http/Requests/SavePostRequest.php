@@ -27,7 +27,7 @@ class SavePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|unique:posts,title|max:200|not_in:create,edit,import', 
+            'title' => 'required|max:200|not_in:create,edit,import', 
             'text' => 'required|string|min:60', 
             'tags' => 'array'
         ];
