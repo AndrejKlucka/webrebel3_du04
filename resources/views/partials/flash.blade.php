@@ -1,4 +1,4 @@
-@if ( session()->exists('flash') )
+@if ( session()->has('flash.message') )
 	<div class="alert alert-dismissible alert-{{ session()->get('flash.level') }}">		
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 

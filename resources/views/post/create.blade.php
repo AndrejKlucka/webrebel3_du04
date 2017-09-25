@@ -6,14 +6,12 @@
 
 <section class="box post-list">
 
-	<h1 class="box-heading text-muted">Create a blog post</h1>
+  <h1 class="box-heading text-muted">Create a blog post</h1>
 
- 
-  <!--h1>Create a blog post</h1-->
   <form action="/blog" method="POST" accept-charset="utf-8" class="post form-horizontal" id="add-form">
     {{ csrf_field() }}
 
-	@include('post.form')
+	   @include('post.form')
 
     {{-- Button submit field --}}
     <div class="form-group">

@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['index','show']);
+        $this->middleware('auth'); //->except(['index','show']);
     }
 
     /**
@@ -38,8 +38,9 @@ class PostController extends Controller
     public function create()
     {
         $tags = Tag::all();
+        $post = new Post;
 
-        return view('post.create', compact('tags'));
+        return view('post.create', compact('post','tags'));
     }
 
     /**
@@ -51,8 +52,9 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(),[ 
-            'title' => 'required|unique:posts,title|max:255|not_in:create,edit,import', 
+            'title' => 'required|unique:posts,title|max:200|not_in:create,edit,import', 
             'text' => 'required|string|min:60', 
+            'tags' => 'array'
         ]);
 
         $post = auth()->user()->posts()->create(
@@ -80,6 +82,8 @@ class PostController extends Controller
 
         //dd( $blog->user->email );
 
+        //return $blog->created_at;
+
         return view('post.show')->with('post', $blog);
     }
 
@@ -92,7 +96,14 @@ class PostController extends Controller
      */
     public function edit(Post $blog)
     {
-        return view('post.edit')->with('post', $blog);
+
+        //dd( $blog );
+        $tags = Tag::all();
+        $blog->tags();
+
+        return view('post.edit')
+                ->with('post', $blog)
+                ->with('tags', $tags);
     }
 
     /**
@@ -104,7 +115,23 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $blog)
     {
-        //
+
+        $this->validate(request(),[ 
+            'title' => 'required|max:200|not_in:create,edit,import', 
+            'text' => 'required|string|min:60', 
+        ]);
+
+        $blog->update(
+            request(['title','text'])
+        );
+
+        //dd($blog);
+
+        $blog->tags()->sync($request->get('tags') ?: []);
+
+        message('Yeah !!! Asi sa to upravi lo teda dufam ... ;)', 'success');
+
+        return view('post.show')->with('post', $blog);
     }
 
     /**

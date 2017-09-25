@@ -2,19 +2,9 @@
 
 
 	/**
-	 * INSERT FORM
-	 */
-	var form  = $('#add-form'),
-	    list  = $('#item-list'),
-	    input = form.find('#text');
-
-	input.val('').focus();
-
-
-	/**
-	 * EDIT FORM
-	 */
-	$('#edit-form').find('#text').select();
+	 * FADE-IN FSAH MESSAGE
+	 */	
+	setTimeout(function(){$(".alert").fadeOut(4000);}, 7000);
 
 
 	/**

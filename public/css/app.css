@@ -69,13 +69,20 @@
 .box .checkbox {
 	margin-bottom: 30px;
 }
+.box .box-heading{
+	border-bottom: 1px solid #dedede;
+}
 
 .box .checkbox {
 	font-weight: normal;
+	padding-left: 30px;
+	display: inline-block;
+	cursor: pointer;
 }
 
 .box .checkbox input {
-	top: -1px;
+	top: 8px;
+	cursor: pointer;
 }
 
 .box .form-control {
@@ -105,11 +112,63 @@
 	margin-top: 20px;
 }
 
-.box .checkbox {
-	padding-left: 31px;
+.box-error{
+	margin-top: 50px;
+    text-align: center;
+}
+.box-error h1.box-heading {
+    font-size: 220px;
+    border: 11px solid;
+    border-radius: 50% 50%;
+    height: 500px;
+    width: 500px;
+    line-height: 450px;
+    display: block;
+    margin: 50px auto;
+    box-shadow: 0 5px 8px 2px rgba(0, 0, 0, 0.25), inset 0 5px 8px 2px rgba(0, 0, 0, 0.25);
+    text-shadow: 0px 7px 8px rgba(0, 0, 0, 0.25);
 }
 
 .alt-action {
 	margin-top: 20px;
 	margin-bottom: -10px;
+}
+
+.full-post time {
+	display: block;
+}
+	
+.edit-links {
+	color: #4e5d6c;
+	vertical-align: bottom;
+}
+
+.edit-links:hover {
+	color: #df691a;
+}
+
+.edit-links a {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 8px 12px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.edit-links a:hover,
+.edit-links a:focus {
+	text-decoration: none;
 }

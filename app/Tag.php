@@ -27,6 +27,6 @@ class Tag extends Model
 	 */
 	public function posts()
 	{
-		return $this->belongsToMany(Post::class)->orderBy('created_at', 'asc');
+		return $this->belongsToMany(Post::class)->latest();
 	}
 }

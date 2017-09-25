@@ -6,7 +6,7 @@
     id="title" 
     name="title" 
     placeholder="Write intristing title"
-    value="{{ old('title') }}"
+    value="{{ old('title', $post->title) }}"
     autofocus>
 
   @if ($errors->has('title'))
@@ -26,7 +26,7 @@
 		rows="16" 
 		id="text"  
 		placeholder="write intristing content"
-		>{{ old('text') }}</textarea>
+		>{{ old('text', $post->text ) }}</textarea>
 
   @if ($errors->has('text'))
     <span class="help-block "> {{ $errors->first('text') }}</span>
@@ -43,8 +43,11 @@
         type="checkbox" 
         name="tags[]" 
         value="{{ $tag->id }}" 
-        @if(is_array(old('tags')) && in_array( $tag->id , old('tags'))) 
-          checked 
+        @if(  
+              is_array( old( 'tags', $post->tags->pluck('id')->toArray() )) && 
+              in_array( $tag->id , old('tags', $post->tags->pluck('id')->toArray() ))
+            )
+              checked 
         @endif>{{ $tag->tag }}
 
 		</label>

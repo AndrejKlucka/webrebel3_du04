@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Tag;
+use App\User;
 
-class TagController extends Controller
+class UserController extends Controller
 {
     /**
      * Display the specified resource.
      *
-     * @param  \App\Tag  $tag
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Tag $tag)
+    public function show(User $user) //$slug)
     {
         //$post = Post::whereSlug( $slug )->firstOrFail();
 
@@ -22,7 +22,7 @@ class TagController extends Controller
         //return $blog->created_at;
 
         return view('post.index')
-        	->with('title', $tag->tag )
-        	->with('posts', $tag->posts);
+        	->with('title', $user->name )
+        	->with('posts', $user->posts);
     }
 }

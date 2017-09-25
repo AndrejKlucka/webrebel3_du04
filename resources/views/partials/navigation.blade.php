@@ -17,4 +17,14 @@
         </form>
 	</div>
 </nav>
+@else
+{{-- <nav class="navigation">
+	<div class="btn-group btn-group-sm pull-left">
+		<a href="{{ url('blog/') }}" class="btn btn-primary"> all posts </a>
+	</div>
+	<div class="btn-group btn-group-sm pull-right">
+		<a href="{{ url('login/') }}" class="btn btn-primary"> login </a>
+		<a href="{{ url('register/') }}" class="btn btn-primary"> register </a>
+	</div>
+</nav> --}}
 @endauth

@@ -7,9 +7,12 @@
 @section('content')
 
 	<section class="box post-list">
-		<h1 class="box-heading text-muted">
-			{!! $title or "this is a blog, bitch" !!}
-		</h1>
+
+		<header class="box-header">
+			<h1 class="box-heading text-muted">
+				{!! $title or "this is a blog, bitch" !!}
+			</h1>
+		</header>
 
 		@forelse( $posts as $post )
 

@@ -64,6 +64,14 @@ class Post extends Model
 	}
 
 	/**
+	 * @return bool|string
+	 */
+	public function getCreatedAtAttribute($value)
+	{
+		return date('j M Y, G:i', strtotime($value));
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getTeaserAttribute()
