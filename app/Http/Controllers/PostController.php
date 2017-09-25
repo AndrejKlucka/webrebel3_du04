@@ -61,7 +61,7 @@ class PostController extends Controller
 
         message('Ďakujem veľmo pekne za pridanie noveho, kreativneho, nšpirativneho obsahu. Yeah !!!', 'success');
 
-        return view('post.show')->with('post', $blog);
+        return view('post.show')->with('post', $post);
     }
 
     /**
@@ -122,6 +122,21 @@ class PostController extends Controller
     }
 
     /**
+     * Show form for removing specified resource.
+     *
+     * @param  \App\Post  $blog
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Post $blog)
+    {
+        // only owner can see the edit for
+        //$this->authorize('edit-post', $post);
+
+        return view('post.delete')
+            ->with('post', $blog);
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Post  $blog
@@ -129,8 +144,12 @@ class PostController extends Controller
      */
     public function destroy(Post $blog)
     {
+        // if authorized, delete
+        // $this->authorize('edit-post', $blog);
+        $blog->delete();
+
         message($blog->title. ' - DELETED !!!','success');
 
-        $blog->destroy();
+        return redirect('/');
     }
 }

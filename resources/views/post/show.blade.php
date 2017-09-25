@@ -19,7 +19,7 @@
 						<a href="{{ route('blog.edit', $post->slug ) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit post">
 							<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> edit
 						</a>
-						<a href="{{ route('blog.destroy', $post->slug ) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete post">
+						<a href="{{ route('blog.delete', $post->slug ) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete post">
 							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> delete
 						</a>
 

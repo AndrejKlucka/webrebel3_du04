@@ -7,7 +7,6 @@
 @section('content')
 
 	<section class="box">
-	{!! Form::model($post, ['route' => [ 'post.destroy', $post->id ], 'method' => 'delete', 'class' => 'post', 'id' => 'delete-form']) !!}
 
 		<header class="post-header">
 			<h1 class="box-heading">
@@ -21,15 +20,22 @@
 			<p class="teaser">{{ $post->teaser }}</p>
 		</blockquote>
 
-		{{-- Delete Post Field --}}
-		<div class="form-group">
-			{!! Form::button('Delete post', ['type' => 'submit', 'class' => 'btn btn-primary']) !!}
-			<span class="or">
-				or {!! link_back('cancel') !!}
-			</span>
-		</div>
+		<form action="{{ route('blog.destroy',$post->slug) }}" method="POST" accept-charset="utf-8" class="post form-horizontal" id="delete-form">
+			<input name="_method" type="hidden" value="DELETE">
+			{{ csrf_field() }}
 
-	{!! Form::close() !!}
+			{{-- Delete Post Field --}}
+		    <div class="form-group">
+		      <button type="submit" class="btn btn-primary">
+		        {{ $submitButtonText ?? 'Delete post' }}
+		      </button>
+
+		      <a class="btn btn-link" href="{{ URL::previous() }}">
+		        Back
+		      </a>
+		    </div>
+
+		</form>
 	</section>
 
 @endsection

@@ -28,7 +28,7 @@ Route::redirect('/', '/blog', 301);
 Auth::routes();
 
 Route::resource('/blog','PostController');
-
+Route::get('/blog/{blog}/delete/', 'PostController@delete')->name('blog.delete');
 Route::get('/blog', 'PostController@index')->name('home');
 
 Route::get('/tag/{tag}', 'TagController@show');
