@@ -69,14 +69,8 @@ class PostController extends Controller
      * @param  \App\Post  $blog
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $blog) //$slug)
+    public function show(Post $blog)
     {
-        //$post = Post::whereSlug( $slug )->firstOrFail();
-
-        //dd( $blog->user->email );
-
-        //return $blog->created_at;
-
         return view('post.show')->with('post', $blog);
     }
 

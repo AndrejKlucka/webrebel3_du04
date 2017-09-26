@@ -13,13 +13,9 @@ class TagController extends Controller
      * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function show(Tag $tag)
+    public function show($name)
     {
-        //$post = Post::whereSlug( $slug )->firstOrFail();
-
-        //dd( $blog->user->email );
-
-        //return $blog->created_at;
+        $tag = Tag::whereTag( urldecode($name) )->firstOrFail();
 
         return view('post.index')
         	->with('title', $tag->tag )

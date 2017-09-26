@@ -49,7 +49,7 @@ class Post extends Model
 	 */
 	public function setTitleAttribute($value)
 	{
-	 	$this->attributes['title'] = $value;
+	 	$this->attributes['title'] = ucfirst($value);
 	 	
 	 	$this->attributes['slug']  = str_slug($value);
 	}

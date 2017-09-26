@@ -36,8 +36,8 @@
 				{!! $post->rich_text !!}
 
 				<p class="written-by small">
-					<small>- written by <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 
-						<a href="{{ url('user', $post->user_id) }}">{{ $post->user->email }}</a>
+					<small>- written by <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+						<a href="{{ url('user', urldecode($post->user->name) ) }}">{{ $post->user->email }}</a>
 					</small>
 				</p>
 			</div>

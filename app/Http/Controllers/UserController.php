@@ -13,13 +13,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user) //$slug)
+    public function show($name)
     {
-        //$post = Post::whereSlug( $slug )->firstOrFail();
-
-        //dd( $blog->user->email );
-
-        //return $blog->created_at;
+        $user = User::whereName( urldecode($name) )->firstOrFail();
 
         return view('post.index')
         	->with('title', $user->name )

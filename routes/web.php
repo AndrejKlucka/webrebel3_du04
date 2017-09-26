@@ -11,25 +11,38 @@
 |
 
 
-Route::get('/', function () {
-    $posts = DB::table('posts');
-
+*/
+Route::get('/test/{tag}', function ($tag) {
+    //$posts = DB::table('posts');
 
     echo '<pre>';
-    print_r( $posts->first() );
+
+	$name = "Andrej Kľučka";
+	echo $name;
+
+	echo urlencode($name);
+
+	$slug=preg_replace('/[^A-Za-z0-9-]+/', '-', $name);
+	echo $slug;
+
+	echo $tag;
+	echo urldecode($tag);
+    
+    //print_r( $posts->first() );
     echo '</pre>'; 
     
     //return view('welcome');
 });
-*/
-
-Route::redirect('/', '/blog', 301);
 
 Auth::routes();
 
-Route::resource('/blog','PostController');
-Route::get('/blog/{blog}/delete/', 'PostController@delete')->name('blog.delete');
-Route::get('/blog', 'PostController@index')->name('home');
+Route::middleware(['auth'])->group(function () {
+	Route::redirect('/', '/blog', 301);
 
-Route::get('/tag/{tag}', 'TagController@show');
-Route::get('/user/{user}', 'UserController@show');
+	Route::resource('/blog','PostController');
+	Route::get('/blog/{blog}/delete/', 'PostController@delete')->name('blog.delete');
+	Route::get('/blog', 'PostController@index')->name('home');
+
+	Route::get('/tag/{tag}', 'TagController@show')->name('tag.show');
+	Route::get('/user/{user}', 'UserController@show')->name('user.show');
+});
