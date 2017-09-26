@@ -38,10 +38,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        $tags = Tag::all();
         $post = new Post;
 
-        return view('post.create', compact('post','tags'));
+        return view('post.create', compact('post'));
     }
 
     /**
@@ -90,14 +89,9 @@ class PostController extends Controller
      */
     public function edit(Post $blog)
     {
-
-        //dd( $blog );
-        $tags = Tag::all();
         $blog->tags;
 
-        return view('post.edit')
-                ->with('post', $blog)
-                ->with('tags', $tags);
+        return view('post.edit')->with('post', $blog);
     }
 
     /**
